@@ -1,0 +1,19 @@
+/*
+哲学家进餐问题
+*/
+
+semaphore chopstick [5] = {1,1,1,1,1};
+semaphore mutex = 1;    //互斥地访问筷子
+
+Pi(){       //i号哲学家的进程
+    while(1){
+        P(mutex);
+        P(chopstick[i]);    //拿左
+        P(chopstick[(i + 1) % 5]);  //拿右
+        V(mutex);
+        吃饭
+        V(chopstick[i]);    //放左
+        V(chopstick[(i + 1) % 5]);      //放右
+        思考
+    }
+}
